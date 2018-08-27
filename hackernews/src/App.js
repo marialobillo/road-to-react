@@ -45,12 +45,15 @@ class App extends Component {
   render() {
     const { searchTerm, list } = this.state;
     return (
-      <div className="App">
+      <div className="page">
           <h2>Hacker News</h2>
+          <div className="interactions">
           <Search
             value={searchTerm}
             onChange={this.onSearchChange}
           >Search</Search>
+          <hr />
+        </div>
           <Table
             list={list}
             pattern={searchTerm}

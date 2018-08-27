@@ -26,17 +26,35 @@ class App extends Component {
 
     this.state = {
       list,
+      searchTerm: ''
     }
   }
   onDismiss = (id) => {
     const updatedList = this.state.list.filter(item => item.objectID !== id);
     this.setState({list: updatedList});
   }
+
+  onSearchChange = (event) => {
+    this.setState({ searchTerm: event.target.value })
+  }
+
+  isSearched = (searchTerm) => {
+    return item => {
+      return item.title.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+  }
   render() {
+    const { searchTerm, list } = this.state;
     return (
       <div className="App">
           <h2>Hacker News</h2>
-          {this.state.list.map(item => {
+          <form>
+            <input
+              type="text"
+              onChange={this.onSearchChange}
+            />
+          </form>
+          {list.filter(this.isSearched(this.state.searchTerm)).map(item => {
             const onHandleDismiss = () =>
               this.onDismiss(item.objectID);
 

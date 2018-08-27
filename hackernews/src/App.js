@@ -3,6 +3,7 @@ import './App.css';
 import Search from './components/Search';
 import Table from  './components/Table';
 
+
 const list = [
   {
     title: 'React',
@@ -49,7 +50,7 @@ class App extends Component {
           <Search
             value={searchTerm}
             onChange={this.onSearchChange}
-          />
+          >Search</Search>
           <Table
             list={list}
             pattern={searchTerm}

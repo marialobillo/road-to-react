@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from './Button'
 
 
 class Table extends Component{
@@ -21,12 +22,9 @@ class Table extends Component{
             <span>{item.num_commments}</span>
             <span>{item.points}</span>
             <span>
-              <button
-                onClick={() => onDismiss(item.objectID)}
-                type="button"
-              >
+              <Button onClick={() => onDismiss(item.objectID)}>
                 Dismiss
-              </button>
+              </Button>
             </span>
           </div>
         )}

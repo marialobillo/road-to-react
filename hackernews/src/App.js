@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import Search from './components/Search';
+import Table from  './components/Table';
 
 const list = [
   {
@@ -38,41 +40,22 @@ class App extends Component {
     this.setState({ searchTerm: event.target.value })
   }
 
-  isSearched = (searchTerm) => {
-    return item => {
-      return item.title.toLowerCase().includes(searchTerm.toLowerCase());
-    }
-  }
+
   render() {
     const { searchTerm, list } = this.state;
     return (
       <div className="App">
           <h2>Hacker News</h2>
-          <form>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={this.onSearchChange}
-            />
-          </form>
-          {list.filter(this.isSearched(this.state.searchTerm)).map(item => {
-            const onHandleDismiss = () =>
-              this.onDismiss(item.objectID);
+          <Search
+            value={searchTerm}
+            onChange={this.onSearchChange}
+          />
+          <Table
+            list={list}
+            pattern={searchTerm}
+            onDismiss={this.onDismiss}
+          />
 
-            return <div key={item.objectID}>
-              <span><a href={item.url}>{item.title}</a></span>
-              <span>{item.author}</span>
-              <span>{item.num_comments}</span>
-              <span>{item.points}</span>
-              <span>
-                <button
-                  onClick={onHandleDismiss}
-                  type="button"
-                  >Dismiss
-                </button>
-              </span>
-              </div>;
-          })}
           <p>Total Articles: {this.state.list.length}</p>
       </div>
     );

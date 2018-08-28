@@ -9,10 +9,10 @@ class Table extends Component{
     }
   }
   render(){
-    const { list, pattern, onDismiss } = this.props;
+    const { list, onDismiss } = this.props;
     return(
       <div className="table">
-        {list.filter(this.isSearched(pattern)).map(item =>
+        {list.map(item =>
           <div key={item.objectID} className="table-row">
             <span style={{ width: '40%' }}>
               <a href={item.url}>{item.title}</a>

@@ -45,6 +45,7 @@ class App extends Component {
 
   render() {
     const { searchTerm, result} = this.state;
+
     if(!result) {return null;}
 
     return (
@@ -57,11 +58,13 @@ class App extends Component {
           >Search</Search>
           <hr />
         </div>
+        { result &&
           <Table
             list={result.hits}
             pattern={searchTerm}
             onDismiss={this.onDismiss}
           />
+        }
 
 
       </div>

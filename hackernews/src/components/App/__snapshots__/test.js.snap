@@ -44,3 +44,21 @@ exports[`App has a valid snapshot 1`] = `
   />
 </div>
 `;
+
+exports[`Search has a valid snapshot 1`] = `
+<form
+  onSubmit={undefined}
+>
+  Search
+  <input
+    onChange={undefined}
+    type="text"
+    value={undefined}
+  />
+  <button
+    type="submit"
+  >
+    Search
+  </button>
+</form>
+`;

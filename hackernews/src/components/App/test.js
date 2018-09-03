@@ -33,7 +33,7 @@ describe('App', () => {
   test('has a valid snapshot', () => {
     const component = renderer.create(<App />);
 
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });

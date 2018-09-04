@@ -16,6 +16,8 @@ import {
 } from '../../constants/index.js';
 
 
+
+
 class App extends Component {
 
   _isMounted = false;
@@ -29,6 +31,8 @@ class App extends Component {
       searchTerm: DEFAULT_QUERY,
       error: null,
       isLoading: false,
+      sortKey: 'NONE',
+      isSortReverse: false,
     }
   }
 
@@ -109,8 +113,14 @@ class App extends Component {
     this._isMounted = false;
   }
 
+  onSort = (sortKey) => {
+    const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
+    this.setState({ sortKey });
+  }
+
   render() {
-    const { searchTerm, results, searchKey, error, isLoading } = this.state;
+    const { searchTerm, results, searchKey,
+      error, isLoading, sortKey, isSortReverse } = this.state;
     const page = (
       results &&
       results[searchKey] &&
@@ -155,7 +165,10 @@ class App extends Component {
           </div> :
           <Table
             list={list}
+            sortKey={sortKey}
+            onSort={this.onSort}
             onDismiss={this.onDismiss}
+            isSortReverse={isSortReverse}
           />
          }
       </div>
@@ -165,5 +178,6 @@ class App extends Component {
 
 const Loading = () =>
   <div>Loading...</div>
+
 
 export default App;
